@@ -1,0 +1,404 @@
+/* Estilos Globales Orientados a Dispositivos Móviles (Responsive First) */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    color: #4a3b32;
+    line-height: 1.6;
+    padding: 10px;
+    display: block;
+    min-height: 100vh;
+}
+
+/* --- IMAGEN DE FONDO PARADISÍACA FIXED --- */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('fondo-paraiso.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0.50;
+}
+
+/* --- CARÁTULA DE BIENVENIDA --- */
+.cover-toggle {
+    display: none;
+}
+
+.welcome-cover {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 240, 241, 0.98) 0%, rgba(253, 218, 220, 0.98) 100%);
+    z-index: 9999;
+    display: block;
+    text-align: center;
+    overflow-y: auto;
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.cover-card {
+    padding: 30px 10px;
+    max-width: 650px;
+    margin: 0 auto;
+}
+
+.main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: #b53842;
+    margin-bottom: 10px;
+    font-weight: 600;
+}
+
+.cover-quote {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 1rem;
+    color: #6e574b;
+    margin-bottom: 25px;
+    padding: 0 10px;
+}
+
+/* --- CONTENEDOR AJUSTADO DEL CORAZÓN (MÓVIL Y PC PERFECTO) --- */
+.heart-container {
+    width: 340px;
+    height: 340px;
+    margin: 40px auto 45px auto;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* El Corazón como fondo exacto */
+.heart-shape {
+    position: absolute;
+    width: 65%;
+    height: 65%;
+    background-color: rgba(223, 73, 84, 0.96);
+    transform: rotate(-45deg);
+    border-radius: 4px;
+    box-shadow: 0 10px 30px rgba(181, 56, 66, 0.3);
+    animation: pulse 2.5s infinite ease-in-out;
+    z-index: 1;
+}
+
+.heart-shape::before,
+.heart-shape::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(223, 73, 84, 0.96);
+    border-radius: 50%;
+}
+
+.heart-shape::before { top: -50%; left: 0; }
+.heart-shape::after { left: 50%; top: 0; }
+
+@keyframes pulse {
+    0% { transform: rotate(-45deg) scale(1); }
+    50% { transform: rotate(-45deg) scale(1.03); }
+    100% { transform: rotate(-45deg) scale(1); }
+}
+
+/* El texto se posiciona de forma segura en el centro útil del corazón */
+.heart-poem-content {
+    position: relative;
+    z-index: 2;
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 5px;
+}
+
+.heart-poem-content h3 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.9rem;
+    color: #ffeef0;
+    margin-bottom: 12px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+}
+
+.heart-poem-content p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.75rem; /* Tamaño idóneo para que ninguna letra quede fuera en celular */
+    line-height: 1.45;
+    color: #ffffff;
+    font-weight: 400;
+    text-align: center;
+}
+
+/* Botón de Entrada */
+.enter-btn {
+    display: inline-block;
+    padding: 12px 35px;
+    background-color: #b53842;
+    color: #ffffff;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(181, 56, 66, 0.4);
+    transition: background-color 0.3s;
+}
+
+.enter-btn:hover {
+    background-color: #91272f;
+}
+
+/* Ocultar Carátula */
+.cover-toggle:checked ~ .welcome-cover {
+    transform: translateY(-100%);
+}
+
+/* --- CONTENEDOR PRINCIPAL INTERNO --- */
+.container {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.94);
+    padding: 25px 15px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(224, 163, 163, 0.2);
+    margin: 15px auto;
+    text-align: center;
+}
+
+.main-header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.6rem;
+    color: #b53842;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 0.9rem;
+    color: #8c766b;
+    font-style: italic;
+    margin-bottom: 25px;
+}
+
+/* --- PESTAÑAS INTERACTIVAS --- */
+input[type="radio"] {
+    display: none;
+}
+
+.tab-label {
+    display: inline-block;
+    padding: 10px 12px;
+    margin: 5px 2px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #a88f89;
+    background: #fcf8f7;
+    border: 1px solid #f0e2df;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.tab-content-container {
+    background: #ffffff;
+    border-top: 2px solid #fcebeb;
+    padding-top: 20px;
+    text-align: left;
+    margin-top: 15px;
+}
+
+.tab-content {
+    display: none;
+}
+
+#tab1:checked ~ .tab-content-container #content1 { display: block; }
+#tab2:checked ~ .tab-content-container #content2 { display: block; }
+#tab3:checked ~ .tab-content-container #content3 { display: block; }
+
+#tab1:checked ~ label[for="tab1"],
+#tab2:checked ~ label[for="tab2"],
+#tab3:checked ~ label[for="tab3"] {
+    background: #b53842;
+    color: #ffffff;
+    border-color: #b53842;
+}
+
+/* --- TARJETAS DE POEMAS --- */
+.card {
+    background: #fffafb;
+    border-left: 4px solid #b53842;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 4px 12px 12px 4px;
+}
+
+.poem-text {
+    font-style: italic;
+    font-size: 0.95rem;
+    color: #5a4b41;
+}
+
+.poem-author {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #b53842;
+    text-align: right;
+    margin-top: 5px;
+}
+
+/* --- MÚSICA --- */
+.section-intro {
+    font-size: 0.9rem;
+    color: #7a685e;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.music-list {
+    list-style: none;
+}
+
+.music-list li {
+    background: #fff8f8;
+    margin-bottom: 15px;
+    padding: 12px;
+    border-radius: 12px;
+    border: 1px dashed #fcd2d4;
+}
+
+.song-header {
+    margin-bottom: 8px;
+}
+
+.song-title {
+    font-weight: 600;
+    color: #4a3b32;
+    font-size: 0.95rem;
+    display: block;
+}
+
+.song-detail {
+    font-size: 0.8rem;
+    color: #9c8479;
+}
+
+.audio-player {
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* --- GALERÍA --- */
+.image-gallery {
+    margin-bottom: 20px;
+}
+
+.image-box {
+    background: #ffffff;
+    border: 1px solid #f0e2df;
+    border-radius: 12px;
+    padding: 8px;
+    margin-bottom: 15px;
+}
+
+.placeholder-img {
+    background: #fdf1f1;
+    height: 180px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 0.85rem;
+    color: #b89698;
+    border: 2px dashed #fcd2d4;
+}
+
+.image-caption {
+    font-size: 0.8rem;
+    font-style: italic;
+    color: #7a685e;
+    margin-top: 8px;
+    text-align: center;
+}
+
+/* --- BOTÓN FINAL DE WHATSAPP --- */
+.final-box {
+    background: #fff5f5;
+    border: 1px solid #ffd1d3;
+    padding: 20px 15px;
+    border-radius: 16px;
+    text-align: center;
+}
+
+.final-box h3 {
+    font-size: 1.1rem;
+    color: #b53842;
+    margin-bottom: 5px;
+}
+
+.final-box p {
+    font-size: 0.85rem;
+    color: #7a685e;
+    margin-bottom: 15px;
+}
+
+.whatsapp-btn {
+    display: inline-block;
+    background-color: #25D366;
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 12px 20px;
+    border-radius: 25px;
+    box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+/* --- MEDIA QUERIES (PANTALLAS GRANDES Y PC) --- */
+@media (min-width: 600px) {
+    body { padding: 30px; }
+    .container { padding: 35px 30px; }
+    .main-header h1 { font-size: 3.2rem; }
+    .tab-label { font-size: 0.95rem; padding: 10px 20px; margin: 0 5px; }
+    
+    /* Escalado óptimo para pantallas grandes */
+    .heart-container {
+        width: 440px;
+        height: 440px;
+        margin: 40px auto 50px auto;
+    }
+    .heart-poem-content p {
+        font-size: 0.95rem; /* Letras cómodas y legibles en PC */
+        line-height: 1.6;
+    }
+    .heart-poem-content h3 {
+        font-size: 2.3rem;
+        margin-bottom: 15px;
+    }
+
+    .image-gallery {
+        display: table;
+        width: 100%;
+    }
+    .image-box {
+        display: inline-block;
+        width: 48%;
+        margin-right: 2%;
+        vertical-align: top;
+    }
+    .image-box:nth-child(2n) { margin-right: 0; }
+}
