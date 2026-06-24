@@ -46,7 +46,8 @@ body::before {
     display: block;
     text-align: center;
     overflow-y: auto;
-    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1);
+    transition: transform 0.6s cubic-bezier(0.77, 0, 0.175, 1), visibility 0.6s;
+    visibility: visible;
 }
 
 .cover-card {
@@ -83,7 +84,6 @@ body::before {
     justify-content: center;
 }
 
-/* El Corazón como fondo exacto */
 .heart-shape {
     position: absolute;
     width: 65%;
@@ -115,7 +115,6 @@ body::before {
     100% { transform: rotate(-45deg) scale(1); }
 }
 
-/* El texto se posiciona de forma segura en el centro útil del corazón */
 .heart-poem-content {
     position: relative;
     z-index: 2;
@@ -139,7 +138,7 @@ body::before {
 
 .heart-poem-content p {
     font-family: 'Poppins', sans-serif;
-    font-size: 0.75rem; /* Tamaño idóneo para que ninguna letra quede fuera en celular */
+    font-size: 0.75rem;
     line-height: 1.45;
     color: #ffffff;
     font-weight: 400;
@@ -166,6 +165,8 @@ body::before {
 /* Ocultar Carátula */
 .cover-toggle:checked ~ .welcome-cover {
     transform: translateY(-100%);
+    visibility: hidden;
+    pointer-events: none;
 }
 
 /* --- CONTENEDOR PRINCIPAL INTERNO --- */
@@ -228,10 +229,12 @@ input[type="radio"] {
 #tab1:checked ~ .tab-content-container #content1 { display: block; }
 #tab2:checked ~ .tab-content-container #content2 { display: block; }
 #tab3:checked ~ .tab-content-container #content3 { display: block; }
+#tab4:checked ~ .tab-content-container #content4 { display: block; }
 
 #tab1:checked ~ label[for="tab1"],
 #tab2:checked ~ label[for="tab2"],
-#tab3:checked ~ label[for="tab3"] {
+#tab3:checked ~ label[for="tab3"],
+#tab4:checked ~ label[for="tab4"] {
     background: #b53842;
     color: #ffffff;
     border-color: #b53842;
@@ -301,7 +304,7 @@ input[type="radio"] {
     margin-top: 5px;
 }
 
-/* --- GALERÍA --- */
+/* --- GALERÍA MÓVIL --- */
 .image-gallery {
     margin-bottom: 20px;
 }
@@ -314,17 +317,12 @@ input[type="radio"] {
     margin-bottom: 15px;
 }
 
-.placeholder-img {
-    background: #fdf1f1;
-    height: 180px;
+.gallery-img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
     border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-size: 0.85rem;
-    color: #b89698;
-    border: 2px dashed #fcd2d4;
+    display: block;
 }
 
 .image-caption {
@@ -368,6 +366,33 @@ input[type="radio"] {
     box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
 }
 
+/* --- RECUADRO DE CARTA ROMÁNTICA --- */
+.letter-box {
+    background: #fffafb;
+    border: 1px solid #fcd2d4;
+    border-left: 5px solid #b53842;
+    padding: 25px 20px;
+    border-radius: 12px;
+    margin-bottom: 15px;
+    box-shadow: 0 4px 15px rgba(181, 56, 66, 0.05);
+}
+
+.letter-box h3 {
+    font-family: 'Playfair Display', serif;
+    color: #b53842;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.letter-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: #5a4b41;
+    text-align: justify;
+}
+
 /* --- MEDIA QUERIES (PANTALLAS GRANDES Y PC) --- */
 @media (min-width: 600px) {
     body { padding: 30px; }
@@ -375,14 +400,13 @@ input[type="radio"] {
     .main-header h1 { font-size: 3.2rem; }
     .tab-label { font-size: 0.95rem; padding: 10px 20px; margin: 0 5px; }
     
-    /* Escalado óptimo para pantallas grandes */
     .heart-container {
         width: 440px;
         height: 440px;
         margin: 40px auto 50px auto;
     }
     .heart-poem-content p {
-        font-size: 0.95rem; /* Letras cómodas y legibles en PC */
+        font-size: 0.95rem;
         line-height: 1.6;
     }
     .heart-poem-content h3 {
@@ -390,22 +414,13 @@ input[type="radio"] {
         margin-bottom: 15px;
     }
 
+    /* Galería moderna con CSS Grid en PC */
     .image-gallery {
-        display: table;
-        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
     .image-box {
-        display: inline-block;
-        width: 48%;
-        margin-right: 2%;
-        vertical-align: top;
+        margin-bottom: 0;
     }
-    .image-box:nth-child(2n) { margin-right: 0; }
-}
-.gallery-img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover; /* Recorta la imagen para que llene el recuadro perfectamente */
-    border-radius: 8px;
-    display: block;
 }
